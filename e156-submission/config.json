@@ -1,0 +1,57 @@
+{
+  "title": "MaxEnt IPD Reconstructor: Maximum Entropy Recovery of Individual Patient Data",
+  "slug": "maxent-reconstructor",
+  "author": "Mahmood Ahmad",
+  "date": "2026-03-26",
+  "path": "C:\\Projects\\maxent-reconstructor",
+  "type": "methods",
+  "primary_estimand": "Win rate vs normal",
+  "summary": "A five-stage MaxEnt algorithm reconstructs IPD from summary statistics with 94.9% win rate.",
+  "body": "Can maximum entropy reconstruction recover individual patient data from summary statistics more accurately than naive normal assumptions for skewed distributions? We implemented a five-stage optimization algorithm constraining reconstructed samples to match reported mean, standard deviation, minimum, maximum, and sample size while maximizing distributional entropy across bounded support. The method sequentially attempts root-finding, least-squares, Nelder-Mead, approximate relaxation, and truncated normal fallback, returning diagnostics including Kolmogorov-Smirnov statistics and quantile concordance across five percentile levels. In 333 simulations of lognormal data the median error was reduced by 76.6 percent at distribution tails, yielding a 94.9 percent win rate with 95% CI 92.1-97.0 over naive normal reconstruction. Comparison with the R IPDfromAGD package across 50 benchmark scenarios showed MaxEnt winning all comparisons with 77.8 percent mean error reduction. The reconstructor is deterministic with a fixed random seed and integrates directly into meta-analytic pipelines requiring individual-level inputs. A limitation is that performance advantage diminishes for near-symmetric distributions where normal assumptions already hold.",
+  "sentences": [
+    {
+      "role": "Question",
+      "text": "Can maximum entropy reconstruction recover individual patient data from summary statistics more accurately than naive normal assumptions for skewed distributions?"
+    },
+    {
+      "role": "Dataset",
+      "text": "We implemented a five-stage optimization algorithm constraining reconstructed samples to match reported mean, standard deviation, minimum, maximum, and sample size while maximizing distributional entropy across bounded support."
+    },
+    {
+      "role": "Method",
+      "text": "The method sequentially attempts root-finding, least-squares, Nelder-Mead, approximate relaxation, and truncated normal fallback, returning diagnostics including Kolmogorov-Smirnov statistics and quantile concordance across five percentile levels."
+    },
+    {
+      "role": "Primary result",
+      "text": "In 333 simulations of lognormal data the median error was reduced by 76.6 percent at distribution tails, yielding a 94.9 percent win rate with 95% CI 92.1-97.0 over naive normal reconstruction."
+    },
+    {
+      "role": "Robustness",
+      "text": "Comparison with the R IPDfromAGD package across 50 benchmark scenarios showed MaxEnt winning all comparisons with 77.8 percent mean error reduction."
+    },
+    {
+      "role": "Interpretation",
+      "text": "The reconstructor is deterministic with a fixed random seed and integrates directly into meta-analytic pipelines requiring individual-level inputs."
+    },
+    {
+      "role": "Boundary",
+      "text": "A limitation is that performance advantage diminishes for near-symmetric distributions where normal assumptions already hold."
+    }
+  ],
+  "notes": {
+    "app": "MaxEnt IPD Reconstructor v1.0",
+    "data": "333 lognormal simulations, 50 IPDfromAGD benchmarks",
+    "code": "https://github.com/mahmood726-cyber/maxent-reconstructor",
+    "doi": "",
+    "version": "1.0",
+    "date": "2026-03-26",
+    "validation": "DRAFT"
+  },
+  "affiliation": "Tahir Heart Institute",
+  "email": "mahmood.ahmad2@nhs.net",
+  "references": [
+    "Riley RD, Lambert PC, Abo-Zaid G. Meta-analysis of individual participant data: rationale, conduct, and reporting. BMJ. 2010;340:c221.",
+    "Stewart LA, Tierney JF. To IPD or not to IPD? Advantages and disadvantages of systematic reviews using individual patient data. Eval Health Prof. 2002;25(1):76-97.",
+    "Borenstein M, Hedges LV, Higgins JPT, Rothstein HR. Introduction to Meta-Analysis. 2nd ed. Wiley; 2021."
+  ]
+}
