@@ -48,10 +48,11 @@
     "validation": "DRAFT"
   },
   "affiliation": "Tahir Heart Institute",
-  "email": "author@example.com",
+  "email": "mahmood.ahmad2@nhs.net",
   "references": [
     "Riley RD, Lambert PC, Abo-Zaid G. Meta-analysis of individual participant data: rationale, conduct, and reporting. BMJ. 2010;340:c221.",
     "Stewart LA, Tierney JF. To IPD or not to IPD? Advantages and disadvantages of systematic reviews using individual patient data. Eval Health Prof. 2002;25(1):76-97.",
     "Borenstein M, Hedges LV, Higgins JPT, Rothstein HR. Introduction to Meta-Analysis. 2nd ed. Wiley; 2021."
-  ]
+  ],
+  "submitted": false
 }
