@@ -1,3 +1,5 @@
+<!-- sentinel:skip-file — hardcoded paths are fixture/registry/audit-narrative data for this repo's research workflow, not portable application configuration. Same pattern as push_all_repos.py and E156 workbook files. -->
+
 # MaxEnt IPD Reconstructor - Improvement Plan to 1000 Simulations
 
 **Current Status:** 1,077 comparisons across 30 datasets

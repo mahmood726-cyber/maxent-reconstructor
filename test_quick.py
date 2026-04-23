@@ -4,7 +4,9 @@ Quick test script to verify MaxEnt reconstructor works correctly.
 
 import numpy as np
 import sys
-sys.path.insert(0, 'C:/Users/user/maxent-reconstructor')
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from maxent_improved import MaxEntReconstructor, NaiveReconstructor
 
