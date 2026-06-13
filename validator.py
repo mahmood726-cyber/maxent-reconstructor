@@ -66,8 +66,12 @@ class ReconstructionValidator:
         metrics['sd_error_pct'] = abs(np.std(recon_data) - np.std(true_data)) / np.std(true_data) * 100
 
         # Distribution shape metrics
-        metrics['skewness_error'] = abs(self._skewness(recon_data) - self._skewness(true_data))
-        metrics['kurtosis_error'] = abs(self._kurtosis(recon_data) - self._kurtosis(true_data))
+        metrics['skewness_error'] = abs(
+            ReconstructionValidator._skewness(recon_data)
+            - ReconstructionValidator._skewness(true_data))
+        metrics['kurtosis_error'] = abs(
+            ReconstructionValidator._kurtosis(recon_data)
+            - ReconstructionValidator._kurtosis(true_data))
 
         # Kolmogorov-Smirnov statistic
         from scipy.stats import ks_2samp
@@ -212,7 +216,7 @@ class ReconstructionValidator:
             b = np.random.uniform(0.5, 5)
             scenarios.append({
                 'distribution': 'beta',
-                'params': {'a': a, 'b': 'b', 'loc': 0, 'scale': 100},
+                'params': {'a': a, 'b': b, 'loc': 0, 'scale': 100},
                 'n': np.random.choice([50, 100, 200, 500]),
                 'seed': seed
             })
