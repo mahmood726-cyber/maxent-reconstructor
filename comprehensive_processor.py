@@ -15,7 +15,7 @@ from tqdm import tqdm
 import json
 
 import sys
-sys.path.insert(0, 'C:/Users/user/maxent-reconstructor')
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from maxent_improved import MaxEntReconstructor, NaiveReconstructor
 
 warnings.filterwarnings('ignore')
@@ -307,7 +307,7 @@ class ComprehensiveDataProcessor:
             print(f"Unique sources: {combined['source'].nunique()}")
 
             # Save results
-            output_path = Path('C:/Users/user/maxent-reconstructor/comprehensive_validation_results.csv')
+            output_path = Path(__file__).resolve().parent / 'comprehensive_validation_results.csv'
             combined.to_csv(output_path, index=False)
             print(f"\nResults saved to: {output_path}")
 

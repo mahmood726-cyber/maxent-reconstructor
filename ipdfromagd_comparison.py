@@ -20,7 +20,7 @@ import json
 from tqdm import tqdm
 
 import sys
-sys.path.insert(0, 'C:/Users/user/maxent-reconstructor')
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from maxent_improved import MaxEntReconstructor, NaiveReconstructor
 
 warnings.filterwarnings('ignore')
@@ -34,7 +34,7 @@ class IPDfromAGDComparator:
     """
 
     def __init__(self, r_script_path: Optional[str] = None):
-        self.r_script_path = r_script_path or 'C:/Users/user/maxent-reconstructor/ipdfromagd_bridge.R'
+        self.r_script_path = r_script_path or str(Path(__file__).resolve().parent / 'ipdfromagd_bridge.R')
         self.results = []
 
     def check_r_installation(self) -> bool:
@@ -351,7 +351,7 @@ The Maximum Entropy approach:
 - Maximum accuracy needed
 - Clinical trial setting
 """
-        output_path = Path('C:/Users/user/maxent-reconstructor/METHOD_COMPARISON.md')
+        output_path = Path(__file__).resolve().parent / 'METHOD_COMPARISON.md'
         with open(output_path, 'w') as f:
             f.write(doc)
 
@@ -370,7 +370,7 @@ def main():
     results_df = comparator.create_simulation_comparison_without_r(n_sims=50)
 
     # Save results
-    output_path = Path('C:/Users/user/maxent-reconstructor/ipdagd_comparison_results.csv')
+    output_path = Path(__file__).resolve().parent / 'ipdagd_comparison_results.csv'
     results_df.to_csv(output_path, index=False)
     print(f"\nResults saved to: {output_path}")
 

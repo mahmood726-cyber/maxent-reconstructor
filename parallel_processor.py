@@ -15,10 +15,11 @@ from tqdm import tqdm
 import warnings
 from typing import List, Dict, Callable, Optional
 from dataclasses import dataclass
+from pathlib import Path
 import time
 
 import sys
-sys.path.insert(0, 'C:/Users/user/maxent-reconstructor')
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from maxent_improved import MaxEntReconstructor, NaiveReconstructor
 
 warnings.filterwarnings('ignore')
@@ -125,7 +126,7 @@ class ParallelMaxEntValidator:
         df = pd.DataFrame([self._result_to_dict(r) for r in results])
 
         # Save results
-        output_path = f'C:/Users/user/maxent-reconstructor/parallel_validation_{n_sims}.csv'
+        output_path = str(Path(__file__).resolve().parent / f'parallel_validation_{n_sims}.csv')
         df.to_csv(output_path, index=False)
 
         if self.verbose:

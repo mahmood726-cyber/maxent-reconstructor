@@ -349,8 +349,8 @@ class MaxEntReconstructor:
             'actual_sd': float(np.std(syn_data)),
             'actual_min': float(np.min(syn_data)),
             'actual_max': float(np.max(syn_data)),
-            'mean_error_pct': abs(np.mean(syn_data) - self.target_mean) / self.target_mean * 100,
-            'sd_error_pct': abs(np.std(syn_data) - self.target_sd) / self.target_sd * 100,
+            'mean_error_pct': abs(np.mean(syn_data) - self.target_mean) / max(abs(self.target_mean), 1e-10) * 100,
+            'sd_error_pct': abs(np.std(syn_data) - self.target_sd) / max(abs(self.target_sd), 1e-10) * 100,
             'time_seconds': elapsed
         }
 

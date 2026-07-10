@@ -6,7 +6,8 @@ Simple focused validation using one metadat dataset.
 import numpy as np
 import pandas as pd
 import sys
-sys.path.insert(0, 'C:/Users/user/maxent-reconstructor')
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from maxent_improved import MaxEntReconstructor, NaiveReconstructor
 from scipy.stats import lognorm

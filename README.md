@@ -23,6 +23,18 @@ maxent-reconstructor/
 
 ---
 
+## Installation
+
+Requires Python 3.13+. Install the runtime dependencies with:
+
+```bash
+pip install -r requirements.txt
+```
+
+This installs numpy, pandas, scipy, matplotlib, seaborn, and tqdm.
+
+---
+
 ## Code Review & Improvements Made
 
 ### Original Code Issues Identified

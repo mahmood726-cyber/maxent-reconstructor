@@ -22,7 +22,7 @@ from typing import List, Dict, Optional
 import json
 
 import sys
-sys.path.insert(0, 'C:/Users/user/maxent-reconstructor')
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from maxent_improved import MaxEntReconstructor, NaiveReconstructor
 
 warnings.filterwarnings('ignore')
@@ -128,7 +128,9 @@ class SeventyThousandValidator:
         'extreme_skew': {'dist': 'lognormal', 's': 4.0, 'scale': 50},
     }
 
-    def __init__(self, n_workers: Optional[int] = None, output_dir: str = 'C:/Users/user/maxent-reconstructor'):
+    def __init__(self, n_workers: Optional[int] = None, output_dir: Optional[str] = None):
+        if output_dir is None:
+            output_dir = str(Path(__file__).resolve().parent)
         self.n_workers = n_workers or min(cpu_count(), 16)  # Cap at 16
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(exist_ok=True)

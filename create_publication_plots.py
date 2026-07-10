@@ -30,7 +30,7 @@ plt.rcParams.update({
 })
 
 # Create figures directory
-fig_dir = Path('C:/Users/user/maxent-reconstructor/figures')
+fig_dir = Path(__file__).resolve().parent / 'figures'
 fig_dir.mkdir(exist_ok=True)
 
 print("="*70)
@@ -39,8 +39,9 @@ print("="*70)
 
 # Load data
 print("\nLoading validation data...")
-real_data = pd.read_csv('C:/Users/user/maxent-reconstructor/real_data_validation_results.csv')
-ipdagd_data = pd.read_csv('C:/Users/user/maxent-reconstructor/ipdagd_comparison_results.csv')
+_base_dir = Path(__file__).resolve().parent
+real_data = pd.read_csv(_base_dir / 'real_data_validation_results.csv')
+ipdagd_data = pd.read_csv(_base_dir / 'ipdagd_comparison_results.csv')
 
 print(f"Real data validation: {len(real_data)} rows")
 print(f"IPDfromAGD comparison: {len(ipdagd_data)} rows")

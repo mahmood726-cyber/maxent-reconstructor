@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from typing import Dict, List, Callable, Optional
 from concurrent.futures import ProcessPoolExecutor, as_completed
+from pathlib import Path
 import time
 
 from maxent_improved import MaxEntReconstructor, NaiveReconstructor
@@ -54,11 +55,15 @@ class ReconstructionValidator:
 
         metrics = {}
 
-        # Quantile errors (absolute percentage)
+        # Quantile errors. Always emit {q}_error_pct (consumers read it
+        # unconditionally); use a safe denominator so a true quantile of
+        # exactly 0 yields a finite value instead of a KeyError/inf. Also keep
+        # {q}_error_abs when the true quantile is 0 for reference.
         for q_name in true_q:
-            if true_q[q_name] != 0:
-                metrics[f'{q_name}_error_pct'] = abs(recon_q[q_name] - true_q[q_name]) / abs(true_q[q_name]) * 100
-            else:
+            metrics[f'{q_name}_error_pct'] = (
+                abs(recon_q[q_name] - true_q[q_name]) / max(abs(true_q[q_name]), 1e-10) * 100
+            )
+            if true_q[q_name] == 0:
                 metrics[f'{q_name}_error_abs'] = abs(recon_q[q_name] - true_q[q_name])
 
         # Moment errors
@@ -379,7 +384,8 @@ def run_validation(n_sims: int = 2000, save_plots: bool = True):
     df = validator.run_simulation_study(n_sims=n_sims)
 
     # Save results
-    df.to_csv('C:/Users/user/maxent-reconstructor/validation_results.csv', index=False)
+    out_dir = Path(__file__).resolve().parent
+    df.to_csv(out_dir / 'validation_results.csv', index=False)
 
     # Generate report
     summary = validator.generate_summary_report(df)
@@ -395,7 +401,7 @@ def run_validation(n_sims: int = 2000, save_plots: bool = True):
 
     # Plot
     if save_plots:
-        validator.plot_results(df, save_path='C:/Users/user/maxent-reconstructor/validation_plots.png')
+        validator.plot_results(df, save_path=str(Path(__file__).resolve().parent / 'validation_plots.png'))
 
     return df, summary
 

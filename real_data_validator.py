@@ -290,7 +290,7 @@ class RealDataValidator:
 
         if all_results:
             combined = pd.concat(all_results, ignore_index=True)
-            combined.to_csv('C:/Users/user/maxent-reconstructor/real_data_validation_results.csv', index=False)
+            combined.to_csv(Path(__file__).resolve().parent / 'real_data_validation_results.csv', index=False)
             return combined
         else:
             print("No valid datasets found for validation")
@@ -400,7 +400,7 @@ def run_real_data_validation():
         # Plot results
         validator.plot_real_data_results(
             results_df,
-            save_path='C:/Users/user/maxent-reconstructor/real_data_validation_plots.png'
+            save_path=str(Path(__file__).resolve().parent / 'real_data_validation_plots.png')
         )
 
         return results_df

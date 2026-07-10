@@ -36,7 +36,9 @@ plt.rcParams.update({
 class PublicationVisualizer:
     """Create publication-quality figures for MaxEnt validation."""
 
-    def __init__(self, results_df: pd.DataFrame, output_dir: str = 'C:/Users/user/maxent-reconstructor/figures'):
+    def __init__(self, results_df: pd.DataFrame, output_dir: Optional[str] = None):
+        if output_dir is None:
+            output_dir = str(Path(__file__).resolve().parent / 'figures')
         self.df = results_df
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(exist_ok=True)
@@ -333,7 +335,7 @@ class PublicationVisualizer:
 
 def main():
     """Create figures from validation results."""
-    results_path = Path('C:/Users/user/maxent-reconstructor/comprehensive_validation_results.csv')
+    results_path = Path(__file__).resolve().parent / 'comprehensive_validation_results.csv'
 
     if results_path.exists():
         df = pd.read_csv(results_path)
